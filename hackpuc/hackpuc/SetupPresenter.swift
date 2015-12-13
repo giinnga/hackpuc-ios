@@ -116,10 +116,14 @@ class SetupPresenter: UIViewController, SetupViewProtocol, CLLocationManagerDele
             cnmanager = CNContactStore()
             cnmanager?.requestAccessForEntityType(CNEntityType.Contacts, completionHandler: { (vl, error) -> Void in
                 
-                if(vl == true) {
+                dispatch_async(dispatch_get_main_queue(),{
                     
-                    self.nextStep()
-                }
+                    if(vl == true) {
+                        
+                        self.nextStep()
+                    }
+                    
+                })
                 
             })
             
@@ -137,7 +141,11 @@ class SetupPresenter: UIViewController, SetupViewProtocol, CLLocationManagerDele
             
             AVAudioSession.sharedInstance().requestRecordPermission { (value) -> Void in
                 
-                self.nextStep()
+                dispatch_async(dispatch_get_main_queue(),{
+                    
+                    self.nextStep()
+                    
+                })
             }
             
         } else {

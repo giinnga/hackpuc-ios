@@ -139,5 +139,11 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
             phoneNumbers.append(RC.phone)
         }
     }
+    
+    func didPressNext() {
+        
+        let VC = PasswordPresenter()
+        presentViewController(VC, animated: false, completion: nil)
+    }
 }
 

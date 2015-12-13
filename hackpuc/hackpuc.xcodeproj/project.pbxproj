@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		516E3A0B1C1CFA2100347A50 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A0A1C1CFA2100347A50 /* PasswordView.swift */; };
-		516E3A0D1C1CFA3700347A50 /* PasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A0C1C1CFA3700347A50 /* PasswordPresenter.swift */; };
-		516E3A0E1C1CFC8D00347A50 /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94FC6DC81C1CF4E6006ABD28 /* GeosansLight.ttf */; };
+		516E3A101C1D046200347A50 /* PasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A0F1C1D046200347A50 /* PasswordPresenter.swift */; };
+		516E3A121C1D048500347A50 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A111C1D048500347A50 /* PasswordView.swift */; };
+		94D34B181C1CFC31000DDDD2 /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94FC6DC81C1CF4E6006ABD28 /* GeosansLight.ttf */; };
 		94D51A001C1CF5DE001C1033 /* ContactsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D519FF1C1CF5DE001C1033 /* ContactsProtocol.swift */; };
 		94FC6D5C1C1CF277006ABD28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC6D5B1C1CF277006ABD28 /* AppDelegate.swift */; };
 		94FC6D5E1C1CF277006ABD28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC6D5D1C1CF277006ABD28 /* ViewController.swift */; };
@@ -67,8 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		516E3A0A1C1CFA2100347A50 /* PasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
-		516E3A0C1C1CFA3700347A50 /* PasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordPresenter.swift; sourceTree = "<group>"; };
+		516E3A0F1C1D046200347A50 /* PasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordPresenter.swift; sourceTree = "<group>"; };
+		516E3A111C1D048500347A50 /* PasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		94D519FF1C1CF5DE001C1033 /* ContactsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsProtocol.swift; sourceTree = "<group>"; };
 		94D51A011C1CF6C2001C1033 /* hackpuc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hackpuc-Bridging-Header.h"; sourceTree = "<group>"; };
 		94FC6D581C1CF277006ABD28 /* hackpuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackpuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +219,7 @@
 				94FC6D901C1CF2CD006ABD28 /* MyoConnectView.swift */,
 				94FC6D921C1CF2DB006ABD28 /* ContactsView.swift */,
 				94FC6D941C1CF2E7006ABD28 /* MsgView.swift */,
-				516E3A0A1C1CFA2100347A50 /* PasswordView.swift */,
+				516E3A111C1D048500347A50 /* PasswordView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 				94FC6D9B1C1CF32D006ABD28 /* ContactsPresenter.swift */,
 				94FC6D9D1C1CF33B006ABD28 /* MyoConnectPresenter.swift */,
 				94FC6DA01C1CF352006ABD28 /* MsgPresenter.swift */,
-				516E3A0C1C1CFA3700347A50 /* PasswordPresenter.swift */,
+				516E3A0F1C1D046200347A50 /* PasswordPresenter.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -402,7 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				516E3A0E1C1CFC8D00347A50 /* GeosansLight.ttf in Resources */,
+				94D34B181C1CFC31000DDDD2 /* GeosansLight.ttf in Resources */,
 				94FC6DB81C1CF406006ABD28 /* Pena.png in Resources */,
 				94FC6DB91C1CF406006ABD28 /* Background.png in Resources */,
 				94FC6DB71C1CF406006ABD28 /* MyoOn.png in Resources */,
@@ -496,17 +496,17 @@
 				94FC6DAA1C1CF3BD006ABD28 /* FPContact.swift in Sources */,
 				94FC6D911C1CF2CD006ABD28 /* MyoConnectView.swift in Sources */,
 				94FC6D981C1CF301006ABD28 /* SetupPresenter.swift in Sources */,
+				516E3A101C1D046200347A50 /* PasswordPresenter.swift in Sources */,
 				94FC6D9C1C1CF32D006ABD28 /* ContactsPresenter.swift in Sources */,
+				516E3A121C1D048500347A50 /* PasswordView.swift in Sources */,
 				94FC6DA11C1CF352006ABD28 /* MsgPresenter.swift in Sources */,
 				94FC6DAE1C1CF3E9006ABD28 /* FPPassword.swift in Sources */,
 				94FC6DBE1C1CF458006ABD28 /* MyoViewProtocol.swift in Sources */,
 				94FC6D8D1C1CF2AA006ABD28 /* ReadyView.swift in Sources */,
 				94FC6DBC1C1CF44C006ABD28 /* SetupViewProtocol.swift in Sources */,
-				516E3A0B1C1CFA2100347A50 /* PasswordView.swift in Sources */,
 				94FC6D5C1C1CF277006ABD28 /* AppDelegate.swift in Sources */,
 				94FC6D931C1CF2DB006ABD28 /* ContactsView.swift in Sources */,
 				94FC6D9E1C1CF33B006ABD28 /* MyoConnectPresenter.swift in Sources */,
-				516E3A0D1C1CFA3700347A50 /* PasswordPresenter.swift in Sources */,
 				94FC6DC01C1CF469006ABD28 /* LogInProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +649,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hackpuc",
@@ -669,6 +670,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hackpuc",

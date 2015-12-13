@@ -45,7 +45,7 @@ class PasswordView: UIView , UITextFieldDelegate {
         
         //Aqui se definem as medidas e as posições dos componentes (Note que os nomes dos componentes são bem pequenos, abreviados)
         
-        let lPar1Tx:String = "Olá , antes de fazer a conexão com seu dispositivo vamos configurar os alertas..."
+        let lPar1Tx:String = "Informe uma senha para cancelar o alerta."
         
         
         //Label Parte 1
@@ -53,12 +53,12 @@ class PasswordView: UIView , UITextFieldDelegate {
         let lP1W: CGFloat = FP.round(eleW - 2*eleBor)
         let lP1H: CGFloat = FP.round(mH - mW - 6*eleBor)
         let lP1X: CGFloat = 2*eleBor
-        let lP1Y: CGFloat = 10*eleBor
+        let lP1Y: CGFloat = 11*eleBor
         
         //TextField
         //Name
         let fNameW: CGFloat = FP.wP() * 281
-        let fNameH: CGFloat = FP.hP() * 69
+        let fNameH: CGFloat = FP.hP() * 40
         let fNameX: CGFloat = (FP.mW() - fNameW)/2
         let fNameY: CGFloat = FP.mH() - fNameH - 300
         
@@ -89,9 +89,9 @@ class PasswordView: UIView , UITextFieldDelegate {
         //TextField Name
         //FieldName
         tFName = UITextField(frame: CGRectMake(fNameX, fNameY, fNameW, fNameH))
-        tFName!.placeholder = NSLocalizedString("Seu nome", comment: "Nome")
+        tFName!.placeholder = NSLocalizedString("Sua senha", comment: "Nome")
         //tFName.center = CGPointMake(fNameW, fNameH)
-        tFName!.font = UIFont.systemFontOfSize(29)
+        tFName!.font = UIFont.systemFontOfSize(20)
         tFName!.borderStyle = UITextBorderStyle.RoundedRect
         //tFName.autocorrectionType = UITextAutocorrectionType.No
         tFName!.keyboardType = UIKeyboardType.Default
@@ -127,5 +127,11 @@ class PasswordView: UIView , UITextFieldDelegate {
     func saveName() {
         
         delegate?.saveName(self.tFName!.text!)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -41,7 +41,9 @@ class PasswordPresenter: UIViewController, LogInProtocol {
         let realm = try! Realm()
         try! realm.write({
             
-            realm.add(user)
+            realm.add(user, update: true)
+            let VC = MyoConnectPresenter()
+            self.presentViewController(VC, animated: true, completion: nil)
         })
     }
 }

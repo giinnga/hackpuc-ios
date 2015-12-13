@@ -128,4 +128,10 @@ class LogInView: UIView , UITextFieldDelegate {
         
         delegate?.saveName(self.tFName!.text!)
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
 }

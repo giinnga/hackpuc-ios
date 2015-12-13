@@ -12,7 +12,7 @@ import UIKit
 class ContactsView: UIView {
     
     var cTable: UITableView = UITableView()
-        var delegate: ContactsProtocol?
+    var delegate: ContactsProtocol?
     
     override init(frame: CGRect) {
         
@@ -59,7 +59,7 @@ class ContactsView: UIView {
         let cTW: CGFloat = FP.wP() * 281
         let cTH: CGFloat = FP.hP() * 362
         let cTX: CGFloat = (FP.mW() - cTW)/2
-        let cTY: CGFloat = FP.mH() - cTH - 180
+        let cTY: CGFloat = FP.mH() - cTH - 140
         
         //Back Button
         let bbW: CGFloat = FP.wP() * 18
@@ -81,6 +81,7 @@ class ContactsView: UIView {
         let bCon = UIButton(frame: CGRectMake(bConX, bConY, bConW, bConH))
         bCon.backgroundColor = FPColor.bColor()
         bCon.setTitle("Continuar", forState: UIControlState.Normal)
+        bCon.addTarget(self, action: Selector("press"), forControlEvents: UIControlEvents.TouchUpInside)
         
         //titulo Label
         lTit = UILabel(frame: CGRectMake(lTitX,lTitY,lTitW,lTitH))
@@ -113,5 +114,10 @@ class ContactsView: UIView {
     func newContact() {
         
         delegate?.addContact()
+    }
+    
+    func press() {
+        
+        delegate?.didPressNext()
     }
 }
