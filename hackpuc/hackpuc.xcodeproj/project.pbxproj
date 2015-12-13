@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		516E3A101C1D046200347A50 /* PasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A0F1C1D046200347A50 /* PasswordPresenter.swift */; };
 		516E3A121C1D048500347A50 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A111C1D048500347A50 /* PasswordView.swift */; };
+		516E3A141C1D0B6E00347A50 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A131C1D0B6E00347A50 /* ConfigView.swift */; };
+		516E3A161C1D0BA100347A50 /* ConfigPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516E3A151C1D0BA100347A50 /* ConfigPresenter.swift */; };
+		516E3A181C1D0C1800347A50 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 516E3A171C1D0C1800347A50 /* gear.png */; };
 		94D34B181C1CFC31000DDDD2 /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94FC6DC81C1CF4E6006ABD28 /* GeosansLight.ttf */; };
 		94D51A001C1CF5DE001C1033 /* ContactsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D519FF1C1CF5DE001C1033 /* ContactsProtocol.swift */; };
 		94FC6D5C1C1CF277006ABD28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC6D5B1C1CF277006ABD28 /* AppDelegate.swift */; };
@@ -69,6 +72,9 @@
 /* Begin PBXFileReference section */
 		516E3A0F1C1D046200347A50 /* PasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordPresenter.swift; sourceTree = "<group>"; };
 		516E3A111C1D048500347A50 /* PasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		516E3A131C1D0B6E00347A50 /* ConfigView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
+		516E3A151C1D0BA100347A50 /* ConfigPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigPresenter.swift; sourceTree = "<group>"; };
+		516E3A171C1D0C1800347A50 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		94D519FF1C1CF5DE001C1033 /* ContactsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsProtocol.swift; sourceTree = "<group>"; };
 		94D51A011C1CF6C2001C1033 /* hackpuc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hackpuc-Bridging-Header.h"; sourceTree = "<group>"; };
 		94FC6D581C1CF277006ABD28 /* hackpuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackpuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +226,7 @@
 				94FC6D921C1CF2DB006ABD28 /* ContactsView.swift */,
 				94FC6D941C1CF2E7006ABD28 /* MsgView.swift */,
 				516E3A111C1D048500347A50 /* PasswordView.swift */,
+				516E3A131C1D0B6E00347A50 /* ConfigView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 				94FC6D9D1C1CF33B006ABD28 /* MyoConnectPresenter.swift */,
 				94FC6DA01C1CF352006ABD28 /* MsgPresenter.swift */,
 				516E3A0F1C1D046200347A50 /* PasswordPresenter.swift */,
+				516E3A151C1D0BA100347A50 /* ConfigPresenter.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 		94FC6DAF1C1CF3F8006ABD28 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				516E3A171C1D0C1800347A50 /* gear.png */,
 				94FC6DB01C1CF406006ABD28 /* back.png */,
 				94FC6DB11C1CF406006ABD28 /* MyoOff.png */,
 				94FC6DB21C1CF406006ABD28 /* MyoOn.png */,
@@ -408,6 +417,7 @@
 				94FC6DB71C1CF406006ABD28 /* MyoOn.png in Resources */,
 				94FC6DB51C1CF406006ABD28 /* back.png in Resources */,
 				94FC6D661C1CF277006ABD28 /* LaunchScreen.storyboard in Resources */,
+				516E3A181C1D0C1800347A50 /* gear.png in Resources */,
 				94FC6DB61C1CF406006ABD28 /* MyoOff.png in Resources */,
 				94FC6D631C1CF277006ABD28 /* Assets.xcassets in Resources */,
 				94FC6D611C1CF277006ABD28 /* Main.storyboard in Resources */,
@@ -502,11 +512,13 @@
 				94FC6DA11C1CF352006ABD28 /* MsgPresenter.swift in Sources */,
 				94FC6DAE1C1CF3E9006ABD28 /* FPPassword.swift in Sources */,
 				94FC6DBE1C1CF458006ABD28 /* MyoViewProtocol.swift in Sources */,
+				516E3A161C1D0BA100347A50 /* ConfigPresenter.swift in Sources */,
 				94FC6D8D1C1CF2AA006ABD28 /* ReadyView.swift in Sources */,
 				94FC6DBC1C1CF44C006ABD28 /* SetupViewProtocol.swift in Sources */,
 				94FC6D5C1C1CF277006ABD28 /* AppDelegate.swift in Sources */,
 				94FC6D931C1CF2DB006ABD28 /* ContactsView.swift in Sources */,
 				94FC6D9E1C1CF33B006ABD28 /* MyoConnectPresenter.swift in Sources */,
+				516E3A141C1D0B6E00347A50 /* ConfigView.swift in Sources */,
 				94FC6DC01C1CF469006ABD28 /* LogInProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

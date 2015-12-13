@@ -49,17 +49,23 @@ class ContactsView: UIView {
         let bConX: CGFloat = (FP.mW() - bConW)/2
         let bConY: CGFloat = FP.mH() - bConH - 60
         
+        //Botao de add
+        let bAW: CGFloat = FP.wP() * 281
+        let bAH: CGFloat = FP.hP() * 69
+        let bAX: CGFloat = (FP.mW() - bConW)/2
+        let bAY: CGFloat = FP.mH() - bConH - 140
+        
         //Label Titulo tamanhos
         let lTitW: CGFloat = FP.round(eleW - 2*eleBor)
         let lTitH: CGFloat = FP.round(mH - mW - 6*eleBor)
         let lTitX: CGFloat = 2*eleBor
-        let lTitY: CGFloat = 2*eleBor
+        let lTitY: CGFloat = 14
         
         //Tamanhos tableview
         let cTW: CGFloat = FP.wP() * 281
         let cTH: CGFloat = FP.hP() * 362
         let cTX: CGFloat = (FP.mW() - cTW)/2
-        let cTY: CGFloat = FP.mH() - cTH - 140
+        let cTY: CGFloat = FP.mH() - cTH - 220
         
         //Back Button
         let bbW: CGFloat = FP.wP() * 18
@@ -96,10 +102,11 @@ class ContactsView: UIView {
         cTable.frame = CGRectMake(cTX, cTY, cTW, cTH)
         cTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        let button = UIButton(frame: CGRect(x: 10, y: 10, width: 100, height: 100))
-        button.setTitle("Add", forState: UIControlState.Normal)
-        button.addTarget(self, action: Selector("newContact"), forControlEvents: UIControlEvents.TouchUpInside)
-        button.backgroundColor = UIColor.redColor()
+        //Button add
+        let buttonAdd = UIButton(frame: CGRect(x: bAX, y: bAY, width: bAW, height: bAH))
+        buttonAdd.setTitle("Add", forState: UIControlState.Normal)
+        buttonAdd.addTarget(self, action: Selector("newContact"), forControlEvents: UIControlEvents.TouchUpInside)
+        buttonAdd.backgroundColor = FPColor.lGColor()
         
         
         //adding
@@ -108,7 +115,7 @@ class ContactsView: UIView {
         self.addSubview(cTable)
         self.addSubview(bCon)
         self.addSubview(bb)
-        self.addSubview(button)
+        self.addSubview(buttonAdd)
     }
     
     func newContact() {
