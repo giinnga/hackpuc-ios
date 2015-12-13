@@ -112,6 +112,6 @@ class ContactsView: UIView {
     
     func newContact() {
         
-        //        delegate?.addContact()
+        delegate?.addContact()
     }
 }
