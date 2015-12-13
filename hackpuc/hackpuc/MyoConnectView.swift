@@ -15,6 +15,7 @@ class MyoConnectView: UIView {
     var cInfo: UILabel?
     var labelInfo: UILabel?
     var myo: UIImageView?
+    var gear: UIImageView?
     
     var tapGesture = UITapGestureRecognizer()
     
@@ -72,6 +73,11 @@ class MyoConnectView: UIView {
         let myoX: CGFloat = (FP.mW() - myoW)/2
         let myoY: CGFloat = lP1Y + lP1H + 20
         
+        //Config
+        let gearW: CGFloat = FP.mW() / 12
+        let gearX: CGFloat = FP.mW() - gearW - 20
+        let gearY: CGFloat = 30
+        
         //Declarações
         
         //Label Parte 1
@@ -81,6 +87,10 @@ class MyoConnectView: UIView {
         labelInfo?.textColor = FPColor.wColor()
         labelInfo?.textAlignment = NSTextAlignment.Center
         labelInfo?.numberOfLines = 99
+        
+        //Engrenagem
+        gear = UIImageView(frame: CGRectMake(gearX, gearY, gearW, gearW))
+        gear?.image = UIImage(named: "gear.png")
         
         //Continue Button
         cInfo = UILabel(frame: CGRectMake(cInfoX, cInfoY, cInfoW, cInfoH))
@@ -106,6 +116,7 @@ class MyoConnectView: UIView {
         self.addSubview(pena)
         self.addSubview(cInfo!)
         self.addSubview(myo!)
+        self.addSubview(gear!)
     }
     
     func tap(gesture: UITapGestureRecognizer) {
