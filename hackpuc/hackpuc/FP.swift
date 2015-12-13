@@ -54,7 +54,7 @@ class FP: NSObject {
     
     class func fontName() -> String {
         
-        return "GeosansLight-Regular"
+        return "GeosansLight"
         
     }
     

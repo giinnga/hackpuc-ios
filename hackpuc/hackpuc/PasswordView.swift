@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LogInView: UIView , UITextFieldDelegate {
+class PasswordView: UIView , UITextFieldDelegate {
     
     var delegate: LogInProtocol?
     var tFName: UITextField?
@@ -45,7 +45,7 @@ class LogInView: UIView , UITextFieldDelegate {
         
         //Aqui se definem as medidas e as posições dos componentes (Note que os nomes dos componentes são bem pequenos, abreviados)
         
-        let lPar1Tx:String = "Informe o nome a ser enviado para os seus contatos nos alertas."
+        let lPar1Tx:String = "Olá , antes de fazer a conexão com seu dispositivo vamos configurar os alertas..."
         
         
         //Label Parte 1
@@ -58,7 +58,7 @@ class LogInView: UIView , UITextFieldDelegate {
         //TextField
         //Name
         let fNameW: CGFloat = FP.wP() * 281
-        let fNameH: CGFloat = FP.hP() * 40
+        let fNameH: CGFloat = FP.hP() * 69
         let fNameX: CGFloat = (FP.mW() - fNameW)/2
         let fNameY: CGFloat = FP.mH() - fNameH - 300
         
@@ -91,7 +91,7 @@ class LogInView: UIView , UITextFieldDelegate {
         tFName = UITextField(frame: CGRectMake(fNameX, fNameY, fNameW, fNameH))
         tFName!.placeholder = NSLocalizedString("Seu nome", comment: "Nome")
         //tFName.center = CGPointMake(fNameW, fNameH)
-        tFName!.font = UIFont.systemFontOfSize(20)
+        tFName!.font = UIFont.systemFontOfSize(29)
         tFName!.borderStyle = UITextBorderStyle.RoundedRect
         //tFName.autocorrectionType = UITextAutocorrectionType.No
         tFName!.keyboardType = UIKeyboardType.Default
