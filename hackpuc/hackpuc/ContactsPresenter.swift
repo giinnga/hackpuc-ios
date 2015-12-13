@@ -117,6 +117,12 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.deleteContacts(indexPath.row)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    }
+    
     /******************************/
     //MARK: Realm Methods
     /******************************/
@@ -137,6 +143,35 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
             
             contacts.append(RC.name)
             phoneNumbers.append(RC.phone)
+        }
+    }
+    
+    func deleteContacts(index: Int) {
+        
+        try! realm.write ({
+            
+            let deletedNotifications = self.realm.objects(FPContact)
+            self.realm.delete(deletedNotifications)
+        })
+        
+        self.contacts.removeAtIndex(index)
+        self.phoneNumbers.removeAtIndex(index)
+        
+        var i = 0
+        let aux = FPContact()
+        
+        for _ in self.contacts {
+            
+            aux.id = i
+            aux.name = self.contacts[i]
+            aux.phone = self.phoneNumbers[i]
+        
+            try! realm.write({
+            
+                self.realm.add(aux, update: true)
+            })
+            
+            i++
         }
     }
 }
