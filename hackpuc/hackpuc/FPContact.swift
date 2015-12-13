@@ -11,7 +11,7 @@ import RealmSwift
 
 class FPContact: Object {
     
-    dynamic var id = 0
+    dynamic var id = 1
     dynamic var name = ""
     dynamic var phone = ""
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94D34B181C1CFC31000DDDD2 /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94FC6DC81C1CF4E6006ABD28 /* GeosansLight.ttf */; };
 		94D51A001C1CF5DE001C1033 /* ContactsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D519FF1C1CF5DE001C1033 /* ContactsProtocol.swift */; };
 		94FC6D5C1C1CF277006ABD28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC6D5B1C1CF277006ABD28 /* AppDelegate.swift */; };
 		94FC6D5E1C1CF277006ABD28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC6D5D1C1CF277006ABD28 /* ViewController.swift */; };
@@ -354,6 +355,11 @@
 				TargetAttributes = {
 					94FC6D571C1CF277006ABD28 = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					94FC6D6B1C1CF277006ABD28 = {
 						CreatedOnToolsVersion = 7.2;
@@ -390,6 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D34B181C1CFC31000DDDD2 /* GeosansLight.ttf in Resources */,
 				94FC6DB81C1CF406006ABD28 /* Pena.png in Resources */,
 				94FC6DB91C1CF406006ABD28 /* Background.png in Resources */,
 				94FC6DB71C1CF406006ABD28 /* MyoOn.png in Resources */,

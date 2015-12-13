@@ -26,8 +26,8 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     /******************************/
-     //MARK: Application Methods
-     /******************************/
+    //MARK: Application Methods
+    /******************************/
     
     override func viewDidLoad() {
         
@@ -40,6 +40,10 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib. Teste commit
+        
+        retrieveContacts()
+        self.myView.cTable.reloadData()
+        self.myView.cTable.layoutIfNeeded()
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,8 +52,8 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     /******************************/
-     //MARK: Contacts Methods
-     /******************************/
+    //MARK: Contacts Methods
+    /******************************/
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContactProperty contactProperty: CNContactProperty) {
         
@@ -59,6 +63,7 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
         let realmContact = FPContact()
         realmContact.name = contact
         realmContact.phone = phoneNumber
+        realmContact.id = contacts.count
         self.saveContacts(realmContact)
         
         contacts.append(contact)
@@ -69,8 +74,8 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     /******************************/
-     //MARK: Protocol Methods
-     /******************************/
+    //MARK: Protocol Methods
+    /******************************/
     
     func addContact() {
         
@@ -82,8 +87,8 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     /******************************/
-     //MARK: TableView Methods
-     /******************************/
+    //MARK: TableView Methods
+    /******************************/
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
@@ -113,8 +118,8 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     /******************************/
-     //MARK: Realm Methods
-     /******************************/
+    //MARK: Realm Methods
+    /******************************/
     
     func saveContacts(contacts: FPContact) {
         
@@ -122,6 +127,17 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
             
             self.realm.add(contacts)
         })
+    }
+    
+    func retrieveContacts() {
+        
+        let realmContacts = realm.objects(FPContact)
+        
+        for RC in realmContacts {
+            
+            contacts.append(RC.name)
+            phoneNumbers.append(RC.phone)
+        }
     }
 }
 
