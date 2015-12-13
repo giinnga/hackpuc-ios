@@ -109,6 +109,7 @@ class PasswordView: UIView , UITextFieldDelegate {
         bCon.backgroundColor = FPColor.bColor()
         bCon.setTitle("Continuar", forState: UIControlState.Normal)
         bCon.addTarget(self, action: Selector("saveName"), forControlEvents: UIControlEvents.TouchUpInside)
+        bCon.titleLabel!.font = UIFont(name: "GeosansLight", size: FP.normalFS())
         
         //Pena
         let pena = UIImageView(image: UIImage(named: "Pena.png"))

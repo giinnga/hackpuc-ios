@@ -75,6 +75,7 @@ class SetupView: UIView {
         bCon.backgroundColor = FPColor.bColor()
         bCon.setTitle("Entendi", forState: UIControlState.Normal)
         bCon.addTarget(self, action: Selector("buttonPress"), forControlEvents: UIControlEvents.TouchUpInside)
+        bCon.titleLabel!.font = UIFont(name: "GeosansLight", size: FP.normalFS())
         
         //Pena
         let pena = UIImageView(image: UIImage(named: "Pena.png"))

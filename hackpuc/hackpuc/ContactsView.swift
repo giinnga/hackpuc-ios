@@ -88,6 +88,7 @@ class ContactsView: UIView {
         bCon.backgroundColor = FPColor.bColor()
         bCon.setTitle("Continuar", forState: UIControlState.Normal)
         bCon.addTarget(self, action: Selector("press"), forControlEvents: UIControlEvents.TouchUpInside)
+        bCon.titleLabel!.font = UIFont(name: "GeosansLight", size: FP.normalFS())
         
         //titulo Label
         lTit = UILabel(frame: CGRectMake(lTitX,lTitY,lTitW,lTitH))
@@ -107,6 +108,7 @@ class ContactsView: UIView {
         buttonAdd.setTitle("Add", forState: UIControlState.Normal)
         buttonAdd.addTarget(self, action: Selector("newContact"), forControlEvents: UIControlEvents.TouchUpInside)
         buttonAdd.backgroundColor = FPColor.lGColor()
+        buttonAdd.titleLabel!.font = UIFont(name: "GeosansLight", size: FP.normalFS())
         
         
         //adding

@@ -106,6 +106,7 @@ class MsgView: UIView , UITextFieldDelegate {
         let bCon = UIButton(frame: CGRectMake(bConX, bConY, bConW, bConH))
         bCon.backgroundColor = FPColor.bColor()
         bCon.setTitle("Continuar", forState: UIControlState.Normal)
+        bCon.titleLabel!.font = UIFont(name: "GeosansLight", size: FP.normalFS())
         
         //adding
         
