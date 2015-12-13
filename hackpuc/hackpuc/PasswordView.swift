@@ -108,6 +108,7 @@ class PasswordView: UIView , UITextFieldDelegate {
         tFName!.borderStyle = UITextBorderStyle.RoundedRect
         tFName!.backgroundColor = FPColor.wColor()
         tFName!.delegate = self
+        tFName!.keyboardType = UIKeyboardType.NumberPad
         
         //Back Button
         let bbImage = UIImage(named: "back.png")! as UIImage
@@ -147,6 +148,10 @@ class PasswordView: UIView , UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        tFName?.resignFirstResponder()
     }
     
     func pressBack() {
