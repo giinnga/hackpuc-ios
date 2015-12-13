@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Alamofire
+import RealmSwift
 
 class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewProtocol, OTPublisherDelegate, OTSessionDelegate {
     
@@ -32,6 +33,13 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     var userName = "Pega nome do Usuário"
     var userMessage = "Pega mensagem do Usuário"
     
+    var contacts: [String] = []
+    var phoneNumbers: [String] = []
+    var name: String = ""
+    var message: String = ""
+    
+    var realm = try! Realm()
+    
     var myView: MyoConnectView {
         
         get {
@@ -53,6 +61,8 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
         
         let connectionObserver = NSNotificationCenter.defaultCenter()
         connectionObserver.addObserver(self, selector: Selector("connectionEvent:"), name: TLMHubDidConnectDeviceNotification, object: nil)
+        
+        self.retrieveContacts()
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -148,9 +158,16 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
             waitingResponse = true
             
             //Este array de contatos deve ser pego do realm. Deve-se colocar no array todos os contados que o usuário marcou como "quero enviar a mensagem"
-            let contacts = [["name": "Joao Vicente", "number": "+5521995957897"],["name": "Joao Vicente", "number": "+5521995957897"]]
             
-            data = ["alert": ["name": userName, "contacts": contacts, "message": userMessage]]
+            var contacList: [[String: AnyObject]] = []
+            
+            for var i = 0; i < contacts.count; i++ {
+             
+                contacList.append(["name": contacts[i], "number": phoneNumbers[i]])
+                
+            }
+            
+            data = ["alert": ["name": self.name, "contacts": contacList, "message": self.message]]
             
             Alamofire.request(.POST, APIURL + "/alerts", parameters: data, encoding: .JSON).responseJSON { response in
                 
@@ -363,6 +380,31 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
                 Int64(delay * Double(NSEC_PER_SEC))
             ),
             dispatch_get_main_queue(), closure)
+    }
+    
+    func retrieveContacts() {
+        
+        let realmContacts = realm.objects(FPContact)
+        
+        for RC in realmContacts {
+            
+            contacts.append(RC.name)
+            phoneNumbers.append(RC.phone)
+        }
+        
+        let realmMessage = realm.objects(FPMessage)
+        
+        for R in realmMessage {
+            
+            self.message = R.message
+        }
+        
+        let realmName = realm.objects(FPName)
+        
+        for C in realmName {
+            
+            self.name = C.name
+        }
     }
 }
 
