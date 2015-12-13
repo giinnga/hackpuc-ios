@@ -11,6 +11,9 @@ import UIKit
 
 class MsgView: UIView , UITextFieldDelegate {
     
+    var delegate: LogInProtocol?
+    var tFM: UITextField?
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -24,7 +27,7 @@ class MsgView: UIView , UITextFieldDelegate {
     func setup() {
         
         //declaracao
-        var tFM:UITextField = UITextField()
+        tFM = UITextField()
         var lTit:UILabel?
         var lTitTx:String = "Qual mensagem deseja enviar?"
         
@@ -44,7 +47,7 @@ class MsgView: UIView , UITextFieldDelegate {
         //TextField
         //Name
         let fMW: CGFloat = FP.wP() * 281
-        let fMH: CGFloat = FP.hP() * 240
+        let fMH: CGFloat = FP.hP() * 40
         let fMX: CGFloat = (FP.mW() - fMW)/2
         let fMY: CGFloat = FP.mH() - fMH - 300
         
@@ -53,7 +56,7 @@ class MsgView: UIView , UITextFieldDelegate {
         let lP1W: CGFloat = FP.round(eleW - 2*eleBor)
         let lP1H: CGFloat = FP.round(mH - mW - 6*eleBor)
         let lP1X: CGFloat = 2*eleBor
-        let lP1Y: CGFloat = 2*eleBor
+        let lP1Y: CGFloat = 11*eleBor
         
         //def Botao de Continuar
         let bConW: CGFloat = FP.wP() * 281
@@ -64,34 +67,40 @@ class MsgView: UIView , UITextFieldDelegate {
         //Back Button
         let bbW: CGFloat = FP.wP() * 18
         let bbH: CGFloat = FP.hP() * 32
-        let bbX: CGFloat = (FP.mW() - bbW - 350)/2
+        let bbX: CGFloat = 20
         let bbY: CGFloat = 40
+        
+        //Imagem da Pena
+        let penaW: CGFloat = FP.wP() * 86
+        let penaH: CGFloat = FP.hP() * 119
+        let penaX: CGFloat = (FP.mW() - penaW)/2
+        let penaY: CGFloat = 60
         
         //Create part -------------------------------*
         
         
         //FieldMSg
         tFM = UITextField(frame: CGRectMake(fMX, fMY, fMW, fMH))
-        tFM.placeholder = NSLocalizedString(" Escreva seu alerta.", comment: "Nome")
+        tFM?.placeholder = NSLocalizedString(" Escreva seu alerta", comment: "Nome")
         //tFName.center = CGPointMake(fNameW, fNameH)
-        tFM.font = UIFont.systemFontOfSize(29)
-        tFM.borderStyle = UITextBorderStyle.RoundedRect
+        tFM?.font = UIFont.systemFontOfSize(20)
+        tFM?.borderStyle = UITextBorderStyle.RoundedRect
         //tFName.autocorrectionType = UITextAutocorrectionType.No
-        tFM.keyboardType = UIKeyboardType.Default
-        tFM.returnKeyType = UIReturnKeyType.Done
-        tFM.clearButtonMode = UITextFieldViewMode.WhileEditing;
-        tFM.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
-        tFM.borderStyle = UITextBorderStyle.Line
-        tFM.borderStyle = UITextBorderStyle.RoundedRect
-        tFM.backgroundColor = FPColor.wColor()
-        tFM.delegate = self
+        tFM?.keyboardType = UIKeyboardType.Default
+        tFM?.returnKeyType = UIReturnKeyType.Done
+        tFM?.clearButtonMode = UITextFieldViewMode.WhileEditing;
+        tFM?.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        tFM?.borderStyle = UITextBorderStyle.Line
+        tFM?.borderStyle = UITextBorderStyle.RoundedRect
+        tFM?.backgroundColor = FPColor.wColor()
+        tFM?.delegate = self
         
         //Back Button
         let bbImage = UIImage(named: "back.png")! as UIImage
         let bb = UIButton(type: UIButtonType.System) as UIButton
         bb.frame = CGRectMake(bbX, bbY, bbW, bbH)
         bb.setBackgroundImage(bbImage, forState: UIControlState.Normal)
-        bb.addTarget(self, action: "Action:", forControlEvents:UIControlEvents.TouchUpInside)
+        bb.addTarget(self, action: Selector("pressBack"), forControlEvents:UIControlEvents.TouchUpInside)
         
         //Label Parte 1
         lTit = UILabel(frame: CGRectMake(lP1X,lP1Y,lP1W,lP1H))
@@ -106,6 +115,11 @@ class MsgView: UIView , UITextFieldDelegate {
         let bCon = UIButton(frame: CGRectMake(bConX, bConY, bConW, bConH))
         bCon.backgroundColor = FPColor.bColor()
         bCon.setTitle("Continuar", forState: UIControlState.Normal)
+        bCon.addTarget(self, action: Selector("saveName"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        //Pena
+        let pena = UIImageView(image: UIImage(named: "Pena.png"))
+        pena.frame = CGRectMake(penaX, penaY, penaW, penaH)
         
         //adding
         
@@ -113,6 +127,23 @@ class MsgView: UIView , UITextFieldDelegate {
         self.addSubview(bb)
         self.addSubview(bCon)
         self.addSubview(lTit!)
-        self.addSubview(tFM)
+        self.addSubview(tFM!)
+        self.addSubview(pena)
+    }
+    
+    func saveName() {
+        
+        delegate?.saveName(self.tFM!.text!)
+    }
+    
+    func pressBack() {
+        
+        delegate?.didPressBack()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }

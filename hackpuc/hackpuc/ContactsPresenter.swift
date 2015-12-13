@@ -58,7 +58,11 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
     func contactPicker(picker: CNContactPickerViewController, didSelectContactProperty contactProperty: CNContactProperty) {
         
         let contact = contactProperty.contact.givenName
-        let phoneNumber = (contactProperty.value as! CNPhoneNumber).stringValue
+        var phoneNumber = (contactProperty.value as! CNPhoneNumber).stringValue as String
+        
+        phoneNumber = phoneNumber.stringByReplacingOccurrencesOfString(" ", withString: "")
+        phoneNumber = phoneNumber.stringByReplacingOccurrencesOfString("-", withString: "")
+        print(phoneNumber)
         
         let realmContact = FPContact()
         realmContact.name = contact
@@ -179,6 +183,11 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
             
             i++
         }
+    }
+    
+    func didPressBack() {
+        
+        dismissViewControllerAnimated(false, completion: nil)
     }
 }
 

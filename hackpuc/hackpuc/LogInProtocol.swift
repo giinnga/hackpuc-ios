@@ -11,4 +11,5 @@ import Foundation
 protocol LogInProtocol {
     
     func saveName(name: String)
+    func didPressBack()
 }

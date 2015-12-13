@@ -189,6 +189,7 @@
 				94FC6D961C1CF2F3006ABD28 /* Presenter */,
 				94FC6D891C1CF28A006ABD28 /* View */,
 				94FC6D5D1C1CF277006ABD28 /* ViewController.swift */,
+				94FC6D8C1C1CF2AA006ABD28 /* ReadyView.swift */,
 				94FC6D5F1C1CF277006ABD28 /* Main.storyboard */,
 				94FC6D621C1CF277006ABD28 /* Assets.xcassets */,
 				94FC6D641C1CF277006ABD28 /* LaunchScreen.storyboard */,
@@ -220,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				94FC6D8A1C1CF299006ABD28 /* SetupView.swift */,
-				94FC6D8C1C1CF2AA006ABD28 /* ReadyView.swift */,
 				94FC6D8E1C1CF2BC006ABD28 /* LogInView.swift */,
 				94FC6D901C1CF2CD006ABD28 /* MyoConnectView.swift */,
 				94FC6D921C1CF2DB006ABD28 /* ContactsView.swift */,

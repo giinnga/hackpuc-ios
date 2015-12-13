@@ -12,4 +12,5 @@ protocol ContactsProtocol {
     
     func addContact()
     func didPressNext()
+    func didPressBack()
 }

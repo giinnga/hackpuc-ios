@@ -59,7 +59,7 @@ class ContactsView: UIView {
         let lTitW: CGFloat = FP.round(eleW - 2*eleBor)
         let lTitH: CGFloat = FP.round(mH - mW - 6*eleBor)
         let lTitX: CGFloat = 2*eleBor
-        let lTitY: CGFloat = 14
+        let lTitY: CGFloat = 6
         
         //Tamanhos tableview
         let cTW: CGFloat = FP.wP() * 281
@@ -70,7 +70,7 @@ class ContactsView: UIView {
         //Back Button
         let bbW: CGFloat = FP.wP() * 18
         let bbH: CGFloat = FP.hP() * 32
-        let bbX: CGFloat = (FP.mW() - bbW - 350)/2
+        let bbX: CGFloat = 20
         let bbY: CGFloat = 40
         
         
@@ -81,7 +81,7 @@ class ContactsView: UIView {
         let bb = UIButton(type: UIButtonType.System) as UIButton
         bb.frame = CGRectMake(bbX, bbY, bbW, bbH)
         bb.setBackgroundImage(bbImage, forState: UIControlState.Normal)
-        bb.addTarget(self, action: "Action:", forControlEvents:UIControlEvents.TouchUpInside)
+        bb.addTarget(self, action: Selector("pressBack"), forControlEvents:UIControlEvents.TouchUpInside)
         
         //Continue Button
         let bCon = UIButton(frame: CGRectMake(bConX, bConY, bConW, bConH))
@@ -126,5 +126,10 @@ class ContactsView: UIView {
     func press() {
         
         delegate?.didPressNext()
+    }
+    
+    func pressBack() {
+        
+        delegate?.didPressBack()
     }
 }

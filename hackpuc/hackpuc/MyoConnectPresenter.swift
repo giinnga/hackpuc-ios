@@ -26,6 +26,9 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     var begin = false
     var waiting = false
     
+    var lat: Double = 0
+    var lon: Double = 0
+    
     var APIURL = "http://6f4ca100.ngrok.com"
     
     var userId = ""
@@ -37,6 +40,7 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     var phoneNumbers: [String] = []
     var name: String = ""
     var message: String = ""
+    var password: String = ""
     
     var realm = try! Realm()
     
@@ -64,6 +68,10 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
         
         self.retrieveContacts()
         
+        let recognizer = UITapGestureRecognizer(target: self, action: Selector("goToConfig"))
+        self.myView.gear?.userInteractionEnabled = true
+        self.myView.gear?.addGestureRecognizer(recognizer)
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -76,6 +84,16 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
+        
+        var contacList: [[String: AnyObject]] = []
+        
+        for var i = 0; i < contacts.count; i++ {
+            
+            contacList.append(["name": contacts[i], "number": phoneNumbers[i]])
+            
+        }
+        
+        let data = ["alert": ["name": self.name, "contacts": contacList, "message": self.message]]
         
         let authorized = CLLocationManager.authorizationStatus()
         
@@ -143,10 +161,10 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let lat = locations[locations.count - 1].coordinate.latitude
-        let lon = locations[locations.count - 1].coordinate.longitude
+        self.lat = locations[locations.count - 1].coordinate.latitude
+        self.lon = locations[locations.count - 1].coordinate.longitude
         
-        var data = ["status": ["latitude": lat, "longitude": lon]] as [String: AnyObject]
+        var data = ["status": ["latitude": self.lat, "longitude": self.lon]] as [String: AnyObject]
         
         if(waitingResponse == true) {
             
@@ -167,7 +185,9 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
                 
             }
             
-            data = ["alert": ["name": self.name, "contacts": contacList, "message": self.message]]
+            data = ["alert": ["name": self.name, "contacts": contacList, "message": self.message], "status": ["latitude": self.lat, "longitude": self.lon]]
+            
+            print(data)
             
             Alamofire.request(.POST, APIURL + "/alerts", parameters: data, encoding: .JSON).responseJSON { response in
                 
@@ -245,6 +265,10 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
                     self.userFiringId = firingId!
                     self.waitingResponse = false
                     self.sendingInfo = true
+                    
+                    self.myView.upButton?.hidden = false
+                    self.myView.upTextField?.hidden = false
+                    self.myView.upView?.hidden = false
                 }
             }
             
@@ -334,7 +358,7 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     }
     
     func emergency() {
-        print("fudeu")
+        
         self.myo[0].vibrateWithLength(TLMVibrationLength.Short)
         
         delay(10, closure: {
@@ -382,6 +406,28 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
             dispatch_get_main_queue(), closure)
     }
     
+    func goToConfig() {
+        
+        dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    func didType(text: String) {
+        
+        if(self.password == text) {
+            
+            self.myView.upButton?.hidden = true
+            self.myView.upTextField?.hidden = true
+            self.myView.upView?.hidden = true
+            
+            let newURL = self.APIURL + "/alerts/\(self.userId)/fire/\(self.userFiringId)/ok"
+            let data = ["status": ["latitude": self.lat, "longitude": self.lon, "isOk": true]] as [String: AnyObject]
+            Alamofire.request(.POST, newURL, parameters: data, encoding: .JSON)
+            
+            locationManager?.stopUpdatingLocation()
+            session?.disconnect()
+        }
+    }
+    
     func retrieveContacts() {
         
         let realmContacts = realm.objects(FPContact)
@@ -397,6 +443,13 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
         for R in realmMessage {
             
             self.message = R.message
+        }
+        
+        let realmPassword = realm.objects(FPPassword)
+        
+        for P in realmPassword {
+            
+            self.password = P.password
         }
         
         let realmName = realm.objects(FPName)

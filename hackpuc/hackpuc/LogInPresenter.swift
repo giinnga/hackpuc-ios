@@ -11,6 +11,12 @@ import RealmSwift
 
 class LogInPresenter: UIViewController, LogInProtocol {
     
+    var message = ""
+    var name = ""
+    var password = ""
+    
+    var firstTime = false
+    
     var myView: LogInView {
         
         get {
@@ -25,12 +31,31 @@ class LogInPresenter: UIViewController, LogInProtocol {
         self.myView.delegate = self
         
         super.viewDidLoad()
+        
+        retrieveContacts()
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        print(name)
+        print(message)
+        print(password)
+        
+        if(!name.isEmpty && !message.isEmpty && !password.isEmpty && firstTime == false) {
+            
+            firstTime = true
+            let VC = MyoConnectPresenter()
+            presentViewController(VC, animated: false, completion: nil)
+        }
     }
     
     func saveName(name: String) {
@@ -41,10 +66,42 @@ class LogInPresenter: UIViewController, LogInProtocol {
         let realm = try! Realm()
         try! realm.write({
             
+            print("Saved")
+            
             realm.add(user, update: true)
-            let VC = ContactsPresenter()
-            self.presentViewController(VC, animated: true, completion: nil)
+            let VC = MsgPresenter()
+            self.presentViewController(VC, animated: false, completion: nil)
         })
+    }
+    
+    func retrieveContacts() {
+        
+        let realm = try! Realm()
+        
+        let realmMessage = realm.objects(FPMessage)
+        
+        for R in realmMessage {
+            
+            self.message = R.message
+        }
+        
+        let realmPassword = realm.objects(FPPassword)
+        
+        for P in realmPassword {
+            
+            self.password = P.password
+        }
+        
+        let realmName = realm.objects(FPName)
+        
+        for C in realmName {
+            
+            self.name = C.name
+        }
+    }
+    
+    func didPressBack() {
+        
     }
 }
 

@@ -75,6 +75,12 @@ class PasswordView: UIView , UITextFieldDelegate {
         let penaX: CGFloat = (FP.mW() - penaW)/2
         let penaY: CGFloat = 60
         
+        //Back Button
+        let bbW: CGFloat = FP.wP() * 18
+        let bbH: CGFloat = FP.hP() * 32
+        let bbX: CGFloat = 20
+        let bbY: CGFloat = 40
+        
         //Aqui se criam os componentes **************************************
         
         //Label Parte 1
@@ -103,6 +109,12 @@ class PasswordView: UIView , UITextFieldDelegate {
         tFName!.backgroundColor = FPColor.wColor()
         tFName!.delegate = self
         
+        //Back Button
+        let bbImage = UIImage(named: "back.png")! as UIImage
+        let bb = UIButton(type: UIButtonType.System) as UIButton
+        bb.frame = CGRectMake(bbX, bbY, bbW, bbH)
+        bb.setBackgroundImage(bbImage, forState: UIControlState.Normal)
+        bb.addTarget(self, action: Selector("pressBack"), forControlEvents:UIControlEvents.TouchUpInside)
         
         //Continue Button
         let bCon = UIButton(frame: CGRectMake(bConX, bConY, bConW, bConH))
@@ -122,6 +134,7 @@ class PasswordView: UIView , UITextFieldDelegate {
         self.addSubview(pena)
         self.addSubview(lPar1!)
         self.addSubview(tFName!)
+        self.addSubview(bb)
     }
     
     func saveName() {
@@ -133,5 +146,10 @@ class PasswordView: UIView , UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+    
+    func pressBack() {
+        
+        delegate?.didPressBack()
     }
 }

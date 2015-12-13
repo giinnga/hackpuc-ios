@@ -11,4 +11,5 @@ import Foundation
 protocol MyoViewProtocol {
     
     func connectMyo()
+    func didType(password: String)
 }

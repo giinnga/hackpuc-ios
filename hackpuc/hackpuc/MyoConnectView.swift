@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
-class MyoConnectView: UIView {
+class MyoConnectView: UIView, UITextFieldDelegate {
     
     var delegate: MyoViewProtocol?
     var cInfo: UILabel?
     var labelInfo: UILabel?
     var myo: UIImageView?
     var gear: UIImageView?
+    
+    var upView: UIView?
+    var upTextField: UITextField?
+    var upButton: UIButton?
     
     var tapGesture = UITapGestureRecognizer()
     
@@ -75,7 +79,7 @@ class MyoConnectView: UIView {
         
         //Config
         let gearW: CGFloat = FP.mW() / 12
-        let gearX: CGFloat = FP.mW() - gearW - 20
+        let gearX: CGFloat = FP.mW() - gearW - 10
         let gearY: CGFloat = 30
         
         //Declarações
@@ -110,6 +114,47 @@ class MyoConnectView: UIView {
         myo?.addGestureRecognizer(tapGesture)
         myo?.userInteractionEnabled = true
         
+        
+        
+        //Overlay View
+        
+        //Text Field
+        let fNameW: CGFloat = FP.wP() * 281
+        let fNameH: CGFloat = FP.hP() * 40
+        let fNameX: CGFloat = (FP.mW() - fNameW)/2
+        let fNameY: CGFloat = FP.mH() - fNameH - 300
+        
+        //Botao de Continuar
+        let bConW: CGFloat = FP.wP() * 281
+        let bConH: CGFloat = FP.hP() * 69
+        let bConX: CGFloat = (FP.mW() - bConW)/2
+        let bConY: CGFloat = FP.mH() - bConH - 60
+        
+        upView = UIView(frame: CGRectMake(0,0,FP.mW(),FP.mH()))
+        upView?.backgroundColor = UIColor.blackColor()
+        upView?.alpha = 0.85
+        upView?.hidden = true
+        
+        upTextField = UITextField(frame: CGRectMake(fNameX, fNameY, fNameW, fNameH))
+        upTextField!.placeholder = NSLocalizedString("Senha para fim de alerta", comment: "Nome")
+        upTextField!.font = UIFont.systemFontOfSize(20)
+        upTextField!.borderStyle = UITextBorderStyle.RoundedRect
+        upTextField!.keyboardType = UIKeyboardType.Default
+        upTextField!.returnKeyType = UIReturnKeyType.Done
+        upTextField!.clearButtonMode = UITextFieldViewMode.WhileEditing;
+        upTextField!.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        upTextField!.borderStyle = UITextBorderStyle.Line
+        upTextField!.borderStyle = UITextBorderStyle.RoundedRect
+        upTextField!.backgroundColor = FPColor.wColor()
+        upTextField!.delegate = self
+        upTextField!.hidden = true
+        
+        upButton = UIButton(frame: CGRectMake(bConX, bConY, bConW, bConH))
+        upButton?.backgroundColor = FPColor.bColor()
+        upButton?.setTitle("Cancelar Alerta", forState: UIControlState.Normal)
+        upButton?.addTarget(self, action: Selector("tryCancel"), forControlEvents: UIControlEvents.TouchUpInside)
+        upButton?.hidden = true
+        
         //Acrescentar views
         self.addSubview(bgView)
         self.addSubview(labelInfo!)
@@ -117,10 +162,25 @@ class MyoConnectView: UIView {
         self.addSubview(cInfo!)
         self.addSubview(myo!)
         self.addSubview(gear!)
+        
+        self.addSubview(upView!)
+        self.addSubview(upTextField!)
+        self.addSubview(upButton!)
     }
     
     func tap(gesture: UITapGestureRecognizer) {
         
         self.delegate?.connectMyo()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func tryCancel() {
+        
+        delegate?.didType(upTextField!.text!)
     }
 }
