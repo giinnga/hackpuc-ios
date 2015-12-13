@@ -17,6 +17,11 @@ class FPColor: NSObject {
         return UIColor(red: 127/255.0, green: 255/255.0, blue: 123/255.0, alpha: 1)
         
     }
+    class func lGColor() -> UIColor {
+        
+        return UIColor(red: 162/255.0, green: 235/255.0, blue: 159/255.0, alpha: 1)
+        
+    }
     
     class func bColor() -> UIColor {
         
@@ -32,6 +37,12 @@ class FPColor: NSObject {
     class func wColor() -> UIColor {
         
         return UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1)
+        
+    }
+    
+    class func pColor() -> UIColor {
+        
+        return UIColor(red: 85/255.0, green: 75/255.0, blue: 94/255.0, alpha: 1)
         
     }
 }
