@@ -11,4 +11,5 @@ import Foundation
 protocol ContactsProtocol {
     
     func addContact()
+    func didPressNext()
 }

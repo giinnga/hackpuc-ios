@@ -52,7 +52,7 @@ class MyoConnectView: UIView {
         let lP1W: CGFloat = FP.round(eleW - 2*eleBor)
         let lP1H: CGFloat = FP.round(mH - mW - 6*eleBor)
         let lP1X: CGFloat = 2*eleBor
-        let lP1Y: CGFloat = 10*eleBor
+        let lP1Y: CGFloat = 10*eleBor + 15
         
         //Botao de Continuar
         let cInfoW: CGFloat = FP.wP() * 281

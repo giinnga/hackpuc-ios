@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LogInView: UIView , UITextFieldDelegate {
+class PasswordView: UIView , UITextFieldDelegate {
     
     var delegate: LogInProtocol?
     var tFName: UITextField?
@@ -45,7 +45,7 @@ class LogInView: UIView , UITextFieldDelegate {
         
         //Aqui se definem as medidas e as posições dos componentes (Note que os nomes dos componentes são bem pequenos, abreviados)
         
-        let lPar1Tx:String = "Informe o nome a ser enviado para os seus contatos nos alertas."
+        let lPar1Tx:String = "Informe uma senha para cancelar o alerta."
         
         
         //Label Parte 1
@@ -53,7 +53,7 @@ class LogInView: UIView , UITextFieldDelegate {
         let lP1W: CGFloat = FP.round(eleW - 2*eleBor)
         let lP1H: CGFloat = FP.round(mH - mW - 6*eleBor)
         let lP1X: CGFloat = 2*eleBor
-        let lP1Y: CGFloat = 10*eleBor
+        let lP1Y: CGFloat = 11*eleBor
         
         //TextField
         //Name
@@ -89,7 +89,7 @@ class LogInView: UIView , UITextFieldDelegate {
         //TextField Name
         //FieldName
         tFName = UITextField(frame: CGRectMake(fNameX, fNameY, fNameW, fNameH))
-        tFName!.placeholder = NSLocalizedString("Seu nome", comment: "Nome")
+        tFName!.placeholder = NSLocalizedString("Sua senha", comment: "Nome")
         //tFName.center = CGPointMake(fNameW, fNameH)
         tFName!.font = UIFont.systemFontOfSize(20)
         tFName!.borderStyle = UITextBorderStyle.RoundedRect

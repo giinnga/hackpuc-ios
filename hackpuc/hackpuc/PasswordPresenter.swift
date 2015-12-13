@@ -9,18 +9,18 @@
 import UIKit
 import RealmSwift
 
-class LogInPresenter: UIViewController, LogInProtocol {
+class PasswordPresenter: UIViewController, LogInProtocol {
     
-    var myView: LogInView {
+    var myView: PasswordView {
         
         get {
-            return self.view as! LogInView
+            return self.view as! PasswordView
         }
     }
     
     override func viewDidLoad() {
         
-        self.view = LogInView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+        self.view = PasswordView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
         
         self.myView.delegate = self
         
@@ -33,16 +33,16 @@ class LogInPresenter: UIViewController, LogInProtocol {
         // Dispose of any resources that can be recreated.
     }
     
-    func saveName(name: String) {
+    func saveName(password: String) {
         
-        let user = FPName()
-        user.name = name
+        let user = FPPassword()
+        user.password = password
         
         let realm = try! Realm()
         try! realm.write({
             
             realm.add(user, update: true)
-            let VC = ContactsPresenter()
+            let VC = MyoConnectPresenter()
             self.presentViewController(VC, animated: true, completion: nil)
         })
     }

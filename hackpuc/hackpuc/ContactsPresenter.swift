@@ -174,5 +174,12 @@ class ContactsPresenter: UIViewController, UITableViewDataSource, UITableViewDel
             i++
         }
     }
+    
+        
+    func didPressNext() {
+        
+        let VC = PasswordPresenter()
+        presentViewController(VC, animated: false, completion: nil)
+    }
 }
 
