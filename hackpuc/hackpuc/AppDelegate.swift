@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(Realm.Configuration.defaultConfiguration.path!)
         
-        let view = SetupPresenter()
+        let view = LogInPresenter()
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = view
         self.window?.makeKeyAndVisible()
