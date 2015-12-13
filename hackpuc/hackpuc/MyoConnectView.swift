@@ -16,6 +16,7 @@ class MyoConnectView: UIView, UITextFieldDelegate {
     var labelInfo: UILabel?
     var myo: UIImageView?
     var gear: UIImageView?
+    var pena: UIImageView?
     
     var upView: UIView?
     var upTextField: UITextField?
@@ -105,8 +106,8 @@ class MyoConnectView: UIView, UITextFieldDelegate {
         cInfo?.numberOfLines = 99
         
         //Pena
-        let pena = UIImageView(image: UIImage(named: "Pena.png"))
-        pena.frame = CGRectMake(penaX, penaY, penaW, penaH)
+        pena = UIImageView(image: UIImage(named: "Pena.png"))
+        pena?.frame = CGRectMake(penaX, penaY, penaW, penaH)
         
         //Myo
         myo = UIImageView(image: UIImage(named: "MyoOff.png"))
@@ -158,7 +159,7 @@ class MyoConnectView: UIView, UITextFieldDelegate {
         //Acrescentar views
         self.addSubview(bgView)
         self.addSubview(labelInfo!)
-        self.addSubview(pena)
+        self.addSubview(pena!)
         self.addSubview(cInfo!)
         self.addSubview(myo!)
         self.addSubview(gear!)

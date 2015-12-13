@@ -18,6 +18,8 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     var session: OTSession?
     var publisher: OTPublisher?
     
+    var retry = false
+    
     var myo: [TLMMyo] = []
     
     var sendingInfo = false
@@ -25,6 +27,11 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     var presented = false
     var begin = false
     var waiting = false
+    
+    var mainSessionId = ""
+    var mainSessionToken = ""
+    
+    var numero = 0
     
     var lat: Double = 0
     var lon: Double = 0
@@ -72,8 +79,17 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
         self.myView.gear?.userInteractionEnabled = true
         self.myView.gear?.addGestureRecognizer(recognizer)
         
+        let recognizer2 = UITapGestureRecognizer(target: self, action: Selector("testeFunc"))
+        self.myView.pena?.userInteractionEnabled = true
+        self.myView.pena?.addGestureRecognizer(recognizer2)
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func testeFunc() {
+        
+        locationManager?.startUpdatingLocation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,6 +157,7 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
     
     func session(session: OTSession!, didFailWithError error: OTError!) {
         
+        retry = true
         print("*******ERRO SESSION DID FAIL WITH ERROR")
         print(error)
     }
@@ -186,8 +203,6 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
             }
             
             data = ["alert": ["name": self.name, "contacts": contacList, "message": self.message], "status": ["latitude": self.lat, "longitude": self.lon]]
-            
-            print(data)
             
             Alamofire.request(.POST, APIURL + "/alerts", parameters: data, encoding: .JSON).responseJSON { response in
                 
@@ -266,6 +281,9 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
                     self.waitingResponse = false
                     self.sendingInfo = true
                     
+                    self.mainSessionId = sessionId!
+                    self.mainSessionToken = token!
+                    
                     self.myView.upButton?.hidden = false
                     self.myView.upTextField?.hidden = false
                     self.myView.upView?.hidden = false
@@ -277,6 +295,18 @@ class MyoConnectPresenter: UIViewController, CLLocationManagerDelegate, MyoViewP
             let newURL = self.APIURL + "/alerts/\(self.userId)/fire/\(self.userFiringId)/status"
             
             Alamofire.request(.POST, newURL, parameters: data, encoding: .JSON)
+            
+            print("numero \(numero)")
+            numero++
+            
+            if (retry == true) {
+                
+                print("retry")
+                self.session = OTSession(apiKey: "45435402", sessionId: self.mainSessionId, delegate: self)
+                self.session?.connectWithToken(self.mainSessionToken, error: nil)
+                retry = false
+                
+            }
         }
     }
     
